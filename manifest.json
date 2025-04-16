@@ -12,10 +12,10 @@
         {
             "type": "panel",
             "id": "webservice-query",
-            "minimumSize": {"width": 230, "height": 200},
+            "minimumSize": {"width": 160, "height": 160},
             "maximumSize": {"width": 1000, "height": 1000},
-            "preferredDockedSize": {"width": 230, "height": 200},
-            "preferredFloatingSize": {"width": 300, "height": 300},
+            "preferredDockedSize": {"width": 160, "height": 200},
+            "preferredFloatingSize": {"width": 230, "height": 300},
             "label": {"default": "Webservice Query"},
       "icons": [
         {

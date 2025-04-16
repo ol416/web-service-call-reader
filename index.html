@@ -6,6 +6,7 @@
     <script src="index.js"></script>
     <style>
         body {
+            margin-top: 0px;
             margin: 10px;
             font-family: sans-serif;
             display: flex;
@@ -14,28 +15,38 @@
         }
 
         .input-area {
-            display: flex;
+            display: none; /* Hide the input area by default */
             gap: 5px;
-            margin-bottom: 10px;
             flex-shrink: 0;
             width: 100%;
-            align-items: center; /* Align items vertically in the center */
+            align-items: center;
+            transition: display 0.3s ease-in-out; /* Add a smooth transition */
+            flex-direction: column; /* Stack items vertically */
+        }
+
+        .input-area.show {
+            display: flex; /* Show the input area when the 'show' class is added */
         }
 
         .input-area sp-textfield {
-            flex-grow: 1; /* Allow textfields to grow */
-            max-width: 50%; /* Limit textfields to 50% of the container */
+            flex-grow: 1;
+            max-width: 50%;
+        }
+        .input-row{
+            display: flex;
+            width: 100%;
+            gap: 5px;
         }
 
         .wide-text {
             width: 100%;
         }
 
-        footer {
+        .input-footer {
             display: flex;
             justify-content: space-around;
-            margin-top: 5px;
-            flex-shrink: 0;
+            margin-top: 5px; /* Add some space above the buttons */
+            width: 100%;
             align-items: center;
         }
 
@@ -44,12 +55,13 @@
             height: 100%;
             border: 1px solid #ccc;
             overflow-y: auto;
+            padding-right: 20px;
             padding: 10px;
             white-space: pre-wrap;
             resize: both;
             min-height: 100px;
             min-width: 200px;
-            font-size: 16px;
+            font-size: 11px;
         }
 
         #urlFld,
@@ -61,26 +73,31 @@
             margin-top: 5px;
             flex-shrink: 0;
         }
+
+        #toggleInputBtn {
+            margin-bottom: 5px;
+        }
     </style>
 </head>
 
 <body>
-    <sp-heading size="M">JSON Novel Reader</sp-heading>
+    <sp-button id="toggleInputBtn" variant="primary">Show Input</sp-button>
 
     <div class="input-area">
-        <sp-textfield id="urlFld" placeholder="Enter URL">
-            <sp-label slot="label">URL</sp-label>
-        </sp-textfield>
+        <div class="input-row">
+            <sp-textfield id="urlFld" placeholder="Enter URL">
+                <!-- <sp-label slot="label">URL</sp-label> -->
+            </sp-textfield>
 
-        <sp-textfield id="indexFld" placeholder="Index">
-            <sp-label slot="label">Index</sp-label>
-        </sp-textfield>
+            <sp-textfield id="indexFld" placeholder="Index">
+                <!-- <sp-label slot="label">Index</sp-label> -->
+            </sp-textfield>
+        </div>
+        <div class="input-footer">
+            <sp-button variant="primary" id="getContentBtn">Get</sp-button>
+            <sp-slider id="fontSizeControl" label="Font Size" min="10" max="30" value="11" step="1"></sp-slider>
+        </div>
     </div>
-
-    <footer>
-        <sp-button id="getContentBtn">Get Content</sp-button>
-        <sp-slider id="fontSizeControl" label="Font Size" min="10" max="30" value="16" step="1"></sp-slider>
-    </footer>
 
     <div id="contentArea">
         <!-- Content will be displayed here -->

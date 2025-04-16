@@ -32,8 +32,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const indexFld = document.getElementById("indexFld");
     const contentArea = document.getElementById("contentArea");
     const fontSizeControl = document.getElementById("fontSizeControl");
+    const inputArea = document.querySelector(".input-area");
+    const toggleInputBtn = document.getElementById("toggleInputBtn");
 
-    if (getContentBtn && urlFld && indexFld && contentArea && fontSizeControl) {
+    if (getContentBtn && urlFld && indexFld && contentArea && fontSizeControl && inputArea && toggleInputBtn) {
         getContentBtn.addEventListener("click", async () => {
             const url = urlFld.value;
             const index = indexFld.value;
@@ -61,6 +63,15 @@ document.addEventListener("DOMContentLoaded", () => {
         // Font Size Control
         fontSizeControl.addEventListener("change", () => {
             contentArea.style.fontSize = `${fontSizeControl.value}px`;
+        });
+        // Toggle Input Area
+        toggleInputBtn.addEventListener("click", () => {
+            inputArea.classList.toggle("show");
+            if(inputArea.classList.contains("show")){
+                toggleInputBtn.textContent = "Hide Input";
+            }else{
+                toggleInputBtn.textContent = "Show Input";
+            }
         });
     }
 });
