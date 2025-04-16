@@ -15,27 +15,29 @@
         }
 
         .input-area {
-            display: none; /* Hide the input area by default */
+            display: none;
             gap: 5px;
             flex-shrink: 0;
             width: 100%;
             align-items: center;
-            transition: display 0.3s ease-in-out; /* Add a smooth transition */
-            flex-direction: column; /* Stack items vertically */
+            transition: display 0.3s ease-in-out;
+            flex-direction: column;
         }
 
         .input-area.show {
-            display: flex; /* Show the input area when the 'show' class is added */
+            display: flex;
         }
 
         .input-area sp-textfield {
             flex-grow: 1;
             max-width: 50%;
         }
-        .input-row{
+
+        .input-row {
             display: flex;
             width: 100%;
             gap: 5px;
+            align-items: center;
         }
 
         .wide-text {
@@ -45,7 +47,7 @@
         .input-footer {
             display: flex;
             justify-content: space-around;
-            margin-top: 5px; /* Add some space above the buttons */
+            margin-top: 5px;
             width: 100%;
             align-items: center;
         }
@@ -77,11 +79,42 @@
         #toggleInputBtn {
             margin-bottom: 5px;
         }
+
+        .index-control {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 5px;
+        }
+
+        #indexDisplay {
+            font-size: 0.8em;
+            color: #888;
+            margin: 0;
+            padding-bottom: 6px;
+        }
+
+        .index-control sp-action-button {
+            padding: 0px;
+            width: 20px;
+            height: 20px;
+            min-width: 20px;
+            border-radius: 50%; /* Make the buttons round */
+        }
+        #prevIndexBtn,
+        #nextIndexBtn {
+            padding-bottom: 10px;
+        }
     </style>
 </head>
 
 <body>
-    <sp-button id="toggleInputBtn" variant="primary">Show Input</sp-button>
+    <div class="index-control">
+        <sp-action-button id="prevIndexBtn" quiet>&lt;</sp-action-button>
+        <sp-button id="toggleInputBtn" variant="primary">Show Input</sp-button>
+        <sp-action-button id="nextIndexBtn" quiet>&gt;</sp-action-button>
+        <p id="indexDisplay">Index: 0</p>
+    </div>
 
     <div class="input-area">
         <div class="input-row">

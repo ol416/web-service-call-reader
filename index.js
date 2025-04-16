@@ -26,6 +26,20 @@ function displayContent(content) {
     }
 }
 
+async function loadContent(url, index) {
+    const result = await getBookContent(url, index);
+    if (result.error) {
+        alert(`Error: ${result.error}`);
+        displayContent(`Error: ${result.error}`);
+    } else if (result.data) {
+        const formattedContent = result.data.replace(/\\n/g, '\n');
+        displayContent(formattedContent);
+    } else {
+        alert("No data found in the response.");
+        displayContent("No data found in the response.");
+    }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     const getContentBtn = document.getElementById("getContentBtn");
     const urlFld = document.getElementById("urlFld");
@@ -34,30 +48,26 @@ document.addEventListener("DOMContentLoaded", () => {
     const fontSizeControl = document.getElementById("fontSizeControl");
     const inputArea = document.querySelector(".input-area");
     const toggleInputBtn = document.getElementById("toggleInputBtn");
+    const prevIndexBtn = document.getElementById("prevIndexBtn");
+    const nextIndexBtn = document.getElementById("nextIndexBtn");
+    const indexDisplay = document.getElementById("indexDisplay");
 
-    if (getContentBtn && urlFld && indexFld && contentArea && fontSizeControl && inputArea && toggleInputBtn) {
+    // Initialize index
+    let currentIndex = 0;
+    indexDisplay.textContent = `Index: ${currentIndex}`;
+
+    if (getContentBtn && urlFld && indexFld && contentArea && fontSizeControl && inputArea && toggleInputBtn && prevIndexBtn && nextIndexBtn && indexDisplay) {
         getContentBtn.addEventListener("click", async () => {
             const url = urlFld.value;
             const index = indexFld.value;
+            currentIndex = parseInt(index);
+            indexDisplay.textContent = `Index: ${currentIndex}`;
 
             if (!url || !index) {
                 alert("Please enter both URL and Index.");
                 return;
             }
-
-            const result = await getBookContent(url, index);
-
-            if (result.error) {
-                alert(`Error: ${result.error}`);
-                displayContent(`Error: ${result.error}`);
-            } else if (result.data) {
-                // Replace \n with actual line breaks
-                const formattedContent = result.data.replace(/\\n/g, '\n');
-                displayContent(formattedContent);
-            } else {
-                alert("No data found in the response.");
-                displayContent("No data found in the response.");
-            }
+            await loadContent(url, index);
         });
 
         // Font Size Control
@@ -67,10 +77,30 @@ document.addEventListener("DOMContentLoaded", () => {
         // Toggle Input Area
         toggleInputBtn.addEventListener("click", () => {
             inputArea.classList.toggle("show");
-            if(inputArea.classList.contains("show")){
+            if (inputArea.classList.contains("show")) {
                 toggleInputBtn.textContent = "Hide Input";
-            }else{
+            } else {
                 toggleInputBtn.textContent = "Show Input";
+            }
+        });
+
+        // Previous Index Button
+        prevIndexBtn.addEventListener("click", async () => {
+            currentIndex--;
+            indexFld.value = currentIndex;
+            indexDisplay.textContent = `Index: ${currentIndex}`;
+            if (urlFld.value) {
+                await loadContent(urlFld.value, currentIndex);
+            }
+        });
+
+        // Next Index Button
+        nextIndexBtn.addEventListener("click", async () => {
+            currentIndex++;
+            indexFld.value = currentIndex;
+            indexDisplay.textContent = `Index: ${currentIndex}`;
+            if (urlFld.value) {
+                await loadContent(urlFld.value, currentIndex);
             }
         });
     }
