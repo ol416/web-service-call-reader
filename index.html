@@ -2,31 +2,89 @@
 <html>
 
 <head>
+    <title>JSON Novel Reader</title>
     <script src="index.js"></script>
+    <style>
+        body {
+            margin: 10px;
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 20px);
+        }
+
+        .input-area {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 10px;
+            flex-shrink: 0;
+            width: 100%;
+            align-items: center; /* Align items vertically in the center */
+        }
+
+        .input-area sp-textfield {
+            flex-grow: 1; /* Allow textfields to grow */
+            max-width: 50%; /* Limit textfields to 50% of the container */
+        }
+
+        .wide-text {
+            width: 100%;
+        }
+
+        footer {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 5px;
+            flex-shrink: 0;
+            align-items: center;
+        }
+
+        #contentArea {
+            width: 100%;
+            height: 100%;
+            border: 1px solid #ccc;
+            overflow-y: auto;
+            padding: 10px;
+            white-space: pre-wrap;
+            resize: both;
+            min-height: 100px;
+            min-width: 200px;
+            font-size: 16px;
+        }
+
+        #urlFld,
+        #indexFld {
+            margin-bottom: 0px;
+        }
+
+        #fontSizeControl {
+            margin-top: 5px;
+            flex-shrink: 0;
+        }
+    </style>
 </head>
 
-<style>
-  body {
-    margin: 10px;
-  }
-  .wide-text {
-    width: 100%;
-  }
-  footer {
-    display: flex;
-    justify-content: space-around;
-  }
-</style>
-
 <body>
-    <sp-heading size="M">RESTful data from weather.gov</sp-heading>
-    <sp-textfield id="latitudeFld" placeholder="Latitude"><sp-label isrequired="true" slot="label">Latitude</sp-label></sp-textfield>
-    <sp-textfield id="longitudeFld" placeholder="Longitude"><sp-label isrequired="true" slot="label">Longitude</sp-label></sp-textfield>
-    <br/><br/>
- 
-<footer>
-  <sp-button id="getForecastBtn">Get Forecast</sp-button>
-</footer>
+    <sp-heading size="M">JSON Novel Reader</sp-heading>
+
+    <div class="input-area">
+        <sp-textfield id="urlFld" placeholder="Enter URL">
+            <sp-label slot="label">URL</sp-label>
+        </sp-textfield>
+
+        <sp-textfield id="indexFld" placeholder="Index">
+            <sp-label slot="label">Index</sp-label>
+        </sp-textfield>
+    </div>
+
+    <footer>
+        <sp-button id="getContentBtn">Get Content</sp-button>
+        <sp-slider id="fontSizeControl" label="Font Size" min="10" max="30" value="16" step="1"></sp-slider>
+    </footer>
+
+    <div id="contentArea">
+        <!-- Content will be displayed here -->
+    </div>
 
 </body>
 
