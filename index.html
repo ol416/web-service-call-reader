@@ -111,9 +111,9 @@
 
 <body>
     <div class="index-control">
-        <sp-action-button id="prevIndexBtn" quiet>&lt;</sp-action-button>
+        <sp-action-button id="prevIndexBtn" quiet><</sp-action-button>
         <sp-button id="toggleInputBtn" variant="primary">Show Input</sp-button>
-        <sp-action-button id="nextIndexBtn" quiet>&gt;</sp-action-button>
+        <sp-action-button id="nextIndexBtn" quiet>></sp-action-button>
         <sp-label id="indexDisplay">Index: 0</sp-label>
     </div>
 
@@ -127,6 +127,9 @@
                 <!-- <sp-label slot="label">Index</sp-label> -->
             </sp-textfield>
         </div>
+        <sp-textfield id="getBookContentUrlFld" placeholder="Enter getBookContent URL" size="s">
+            <!-- <sp-label slot="label">getBookContent URL</sp-label> -->
+        </sp-textfield>
         <div class="input-footer">
             <sp-button variant="primary" id="getContentBtn">Get</sp-button>
             <sp-slider id="fontSizeControl" label="Font Size" min="10" max="30" value="11" step="1"></sp-slider>

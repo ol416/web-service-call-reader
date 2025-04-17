@@ -1,73 +1,35 @@
 {
-    "id": "com.adobe.webservice-js-sample",
-    "name": "Sample: Webservice Query",
+    "id": "com.example.web-service-call-reader",
+    "name": "Web Service Call Reader",
     "version": "1.0.0",
     "main": "index.html",
+    "manifestVersion": 5,
     "host": {
         "app": "PS",
         "minVersion": "26.0.0"
     },
-    "manifestVersion": 4,
     "entrypoints": [
         {
             "type": "panel",
-            "id": "webservice-query",
+            "id": "web-service-call-reader",
             "minimumSize": {"width": 160, "height": 160},
             "maximumSize": {"width": 1000, "height": 1000},
             "preferredDockedSize": {"width": 160, "height": 200},
             "preferredFloatingSize": {"width": 230, "height": 300},
-            "label": {"default": "Webservice Query"},
-      "icons": [
-        {
-          "width": 23,
-          "height": 23,
-          "path": "icons/dark.png",
-          "scale": [
-            1,
-            2
-          ],
-          "theme": [
-            "darkest",
-            "dark",
-            "medium"
-          ]
-        },
-        {
-          "width": 23,
-          "height": 23,
-          "path": "icons/light.png",
-          "scale": [
-            1,
-            2
-          ],
-          "theme": [
-            "lightest",
-            "light"
-          ]
+            "label": {"default": "Web Service Call Reader"},
+            "icons": [
+                {"width":23,"height":23,"path":"icons/dark.png","scale":[1,2],"theme":["darkest","dark","medium"]},
+                {"width":23,"height":23,"path":"icons/light.png","scale":[1,2],"theme":["lightest","light"]}
+            ]
         }
-      ]
-    }
     ],
-	"icons": [
-    {
-      "width": 48,
-      "height": 48,
-      "path": "icons/plugin-icon.png",
-      "scale": [
-        1,
-        2
-      ],
-      "theme": [
-        "darkest",
-        "dark",
-        "medium",
-        "lightest",
-        "light",
-        "all"
-      ],
-      "species": [
-        "pluginList"
-      ]
+    "icons": [
+        { "width": 23, "height": 23, "path": "icons/plugin-icon.png", "scale": [ 1, 2 ], "theme": [ "dark", "darkest" ], "species": [ "generic" ] },
+        { "width": 23, "height": 23, "path": "icons/plugin-icon.png", "scale": [ 1, 2 ], "theme": [ "lightest", "light" ], "species": [ "generic" ] }
+    ],
+    "requiredPermissions": {
+        "network": {
+            "domains": "all"
+        }
     }
-  ]
 }

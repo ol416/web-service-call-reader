@@ -2,7 +2,8 @@
 const { core } = require("photoshop");
 
 async function getBookContent(url, index) {
-    const fullUrl = `http://192.168.1.6:1122/getBookContent?url=${encodeURIComponent(url)}&index=${index}`;
+    const getBookContentUrl = localStorage.getItem("getBookContentUrl");
+    const fullUrl = `${getBookContentUrl}?url=${encodeURIComponent(url)}&index=${index}`;
     console.log("Requesting URL:", fullUrl);
 
     try {
@@ -49,6 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const getContentBtn = document.getElementById("getContentBtn");
     const urlFld = document.getElementById("urlFld");
     const indexFld = document.getElementById("indexFld");
+    const getBookContentUrlFld = document.getElementById("getBookContentUrlFld");
     const contentArea = document.getElementById("contentArea");
     const fontSizeControl = document.getElementById("fontSizeControl");
     const inputArea = document.querySelector(".input-area");
@@ -64,12 +66,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // Load saved values from localStorage
     urlFld.value = localStorage.getItem("url") || urlFld.value;
     indexFld.value = localStorage.getItem("index") || indexFld.value;
+    getBookContentUrlFld.value = localStorage.getItem("getBookContentUrl") || getBookContentUrlFld.value;
 
     // Save values to localStorage on change
     urlFld.addEventListener("change", () => localStorage.setItem("url", urlFld.value));
     indexFld.addEventListener("change", () => localStorage.setItem("index", indexFld.value));
+    getBookContentUrlFld.addEventListener("change", () => localStorage.setItem("getBookContentUrl", getBookContentUrlFld.value));
 
-    if (getContentBtn && urlFld && indexFld && contentArea && fontSizeControl && inputArea && toggleInputBtn && prevIndexBtn && nextIndexBtn && indexDisplay) {
+    if (getContentBtn && urlFld && indexFld && contentArea && fontSizeControl && inputArea && toggleInputBtn && prevIndexBtn && nextIndexBtn && indexDisplay && getBookContentUrlFld) {
         getContentBtn.addEventListener("click", async () => {
             const url = urlFld.value;
             const index = indexFld.value;
