@@ -88,10 +88,10 @@
         }
 
         #indexDisplay {
-            font-size: 0.8em;
+            font-size: 1em;
             color: #888;
             margin: 0;
-            padding-bottom: 6px;
+            padding-bottom: 7px;
         }
 
         .index-control sp-action-button {
@@ -113,16 +113,16 @@
         <sp-action-button id="prevIndexBtn" quiet>&lt;</sp-action-button>
         <sp-button id="toggleInputBtn" variant="primary">Show Input</sp-button>
         <sp-action-button id="nextIndexBtn" quiet>&gt;</sp-action-button>
-        <p id="indexDisplay">Index: 0</p>
+        <sp-label id="indexDisplay">Index: 0</sp-label>
     </div>
 
     <div class="input-area">
         <div class="input-row">
-            <sp-textfield id="urlFld" placeholder="Enter URL">
+            <sp-textfield id="urlFld" placeholder="Enter URL" size="s">
                 <!-- <sp-label slot="label">URL</sp-label> -->
             </sp-textfield>
 
-            <sp-textfield id="indexFld" placeholder="Index">
+            <sp-textfield id="indexFld" placeholder="Index" size="s">
                 <!-- <sp-label slot="label">Index</sp-label> -->
             </sp-textfield>
         </div>
