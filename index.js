@@ -23,10 +23,15 @@ function displayContent(content) {
     const contentArea = document.getElementById("contentArea");
     if (contentArea) {
         contentArea.textContent = content;
+        contentArea.scrollTop = 0; // Scroll to top
     }
 }
 
 async function loadContent(url, index) {
+    const contentArea = document.getElementById("contentArea");
+    if (contentArea) {
+        contentArea.textContent = "Loading...";
+    }
     const result = await getBookContent(url, index);
     if (result.error) {
         alert(`Error: ${result.error}`);
@@ -55,6 +60,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // Initialize index
     let currentIndex = 0;
     indexDisplay.textContent = `Index: ${currentIndex}`;
+
+    // Load saved values from localStorage
+    urlFld.value = localStorage.getItem("url") || urlFld.value;
+    indexFld.value = localStorage.getItem("index") || indexFld.value;
+
+    // Save values to localStorage on change
+    urlFld.addEventListener("change", () => localStorage.setItem("url", urlFld.value));
+    indexFld.addEventListener("change", () => localStorage.setItem("index", indexFld.value));
 
     if (getContentBtn && urlFld && indexFld && contentArea && fontSizeControl && inputArea && toggleInputBtn && prevIndexBtn && nextIndexBtn && indexDisplay) {
         getContentBtn.addEventListener("click", async () => {
@@ -87,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Previous Index Button
         prevIndexBtn.addEventListener("click", async () => {
             currentIndex--;
-            indexFld.value = currentIndex;
+            indexFld.value = currentIndex.toString();
             indexDisplay.textContent = `Index: ${currentIndex}`;
             if (urlFld.value) {
                 await loadContent(urlFld.value, currentIndex);
@@ -97,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Next Index Button
         nextIndexBtn.addEventListener("click", async () => {
             currentIndex++;
-            indexFld.value = currentIndex;
+            indexFld.value = currentIndex.toString();
             indexDisplay.textContent = `Index: ${currentIndex}`;
             if (urlFld.value) {
                 await loadContent(urlFld.value, currentIndex);
