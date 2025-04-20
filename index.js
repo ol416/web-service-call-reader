@@ -108,6 +108,8 @@ document.addEventListener("DOMContentLoaded", () => {
             indexDisplay.textContent = `Index: ${currentIndex}`;
             if (urlFld.value) {
                 await loadContent(urlFld.value, currentIndex);
+                // 新增保存逻辑
+                localStorage.setItem("index", indexFld.value);
             }
         });
 
@@ -118,6 +120,8 @@ document.addEventListener("DOMContentLoaded", () => {
             indexDisplay.textContent = `Index: ${currentIndex}`;
             if (urlFld.value) {
                 await loadContent(urlFld.value, currentIndex);
+                // 新增保存逻辑
+                localStorage.setItem("index", indexFld.value);
             }
         });
     }
