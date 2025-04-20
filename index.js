@@ -68,6 +68,10 @@ document.addEventListener("DOMContentLoaded", () => {
     indexFld.value = localStorage.getItem("index") || indexFld.value;
     getBookContentUrlFld.value = localStorage.getItem("getBookContentUrl") || getBookContentUrlFld.value;
 
+    // 新增：根据indexFld的值更新currentIndex和indexDisplay
+    currentIndex = indexFld.value.toString() || "0";
+    indexDisplay.textContent = `Index: ${currentIndex}`;
+
     // Save values to localStorage on change
     urlFld.addEventListener("change", () => localStorage.setItem("url", urlFld.value));
     indexFld.addEventListener("change", () => localStorage.setItem("index", indexFld.value));
