@@ -106,38 +106,92 @@
         #nextIndexBtn {
             padding-bottom: 10px;
         }
+
+        /* Style the tab */
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+        /* Style the buttons inside the tab */
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+        }
+
+        /* Change background color of buttons on hover */
+        .tab button:hover {
+            background-color: #ddd;
+        }
+
+        /* Create an active/current tablink class */
+        .tab button.active {
+            background-color: #ccc;
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
     </style>
 </head>
 
 <body>
-    <div class="index-control">
-        <sp-action-button id="prevIndexBtn" quiet><</sp-action-button>
-        <sp-button id="toggleInputBtn" variant="primary">Show Input</sp-button>
-        <sp-action-button id="nextIndexBtn" quiet>></sp-action-button>
-        <sp-label id="indexDisplay">Index: 0</sp-label>
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'Bookshelf')">Bookshelf</button>
+        <button class="tablinks" onclick="openTab(event, 'ChapterList')">Chapter List</button>
+        <button class="tablinks" onclick="openTab(event, 'BookContent')">Book Content</button>
     </div>
 
-    <div class="input-area">
-        <div class="input-row">
-            <sp-textfield id="urlFld" placeholder="Enter URL" size="s">
-                <!-- <sp-label slot="label">URL</sp-label> -->
-            </sp-textfield>
-
-            <sp-textfield id="indexFld" placeholder="Index" size="s">
-                <!-- <sp-label slot="label">Index</sp-label> -->
-            </sp-textfield>
-        </div>
-        <sp-textfield id="getBookContentUrlFld" placeholder="Enter getBookContent URL" size="s">
-            <!-- <sp-label slot="label">getBookContent URL</sp-label> -->
-        </sp-textfield>
-        <div class="input-footer">
-            <sp-button variant="primary" id="getContentBtn">Get</sp-button>
-            <sp-slider id="fontSizeControl" label="Font Size" min="10" max="30" value="11" step="1"></sp-slider>
-        </div>
+    <div id="Bookshelf" class="tabcontent">
+        <h3>Bookshelf</h3>
+        <div id="bookshelfArea"></div>
     </div>
 
-    <div id="contentArea">
-        <!-- Content will be displayed here -->
+    <div id="ChapterList" class="tabcontent">
+        <h3>Chapter List</h3>
+        <div id="chapterListArea"></div>
+    </div>
+
+    <div id="BookContent" class="tabcontent">
+        <h3>Book Content</h3>
+        <div class="index-control">
+            <sp-action-button id="prevIndexBtn" quiet><</sp-action-button>
+            <sp-button id="toggleInputBtn" variant="primary">Show Input</sp-button>
+            <sp-action-button id="nextIndexBtn" quiet>></sp-action-button>
+            <sp-label id="indexDisplay">Index: 0</sp-label>
+        </div>
+
+        <div class="input-area">
+            <div class="input-row">
+                <sp-textfield id="urlFld" placeholder="Enter URL" size="s">
+                    <!-- <sp-label slot="label">URL</sp-label> -->
+                </sp-textfield>
+
+                <sp-textfield id="indexFld" placeholder="Index" size="s">
+                    <!-- <sp-label slot="label">Index</sp-label> -->
+                </sp-textfield>
+            </div>
+            <sp-textfield id="getBookContentUrlFld" placeholder="Enter getBookContent URL" size="s">
+                <!-- <sp-label slot="label">getBookContent URL</sp-label> -->
+            </sp-textfield>
+            <div class="input-footer">
+                <sp-button variant="primary" id="getContentBtn">Get</sp-button>
+                <sp-slider id="fontSizeControl" label="Font Size" min="10" max="30" value="11" step="1"></sp-slider>
+            </div>
+        </div>
+        <div id="contentArea">
+            <!-- Content will be displayed here -->
+        </div>
     </div>
 
 </body>
